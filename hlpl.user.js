@@ -4,7 +4,7 @@
 // @version      0.3
 // @description  Highlight promotion links of Baidu search results
 // @author       Chu Xiaonan
-// @match        https://www.baidu.com/s?*
+// @match        https://www.baidu.com/*
 // @grant        none
 // ==/UserScript==
 
