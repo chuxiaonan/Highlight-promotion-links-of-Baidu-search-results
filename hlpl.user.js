@@ -49,20 +49,7 @@
         });
     }
 
-    $(document).ajaxComplete(function(event,request,settings){
-        if (typeof settings.__partsIndex != 'undefined' && settings.__partsIndex == 4) {
-            if (request.status == 200) {
-                $("<style>").attr("id", "external-style").text(css).appendTo("head");
-                hlpl();
-            }
-        }
-    });
-
-    hlpl();
-
-    $(document).ready(function(){
-        $("<style>").attr("id", "external-style").text(css).appendTo("head");
-
+    function bindBtnEvent() {
         $('.btn').each(function(){
             var btn = this;
             var btnFront = btn.querySelector( '.btn-front' ),
@@ -103,15 +90,32 @@
                 btn.classList.remove( 'is-open' );
             } );
         });
+    }
+
+    function distance( x1, y1, x2, y2 ) {
+        var dx = x1-x2;
+        var dy = y1-y2;
+        return Math.sqrt( dx*dx + dy*dy );
+    }
+
+    $(document).ajaxComplete(function(event,request,settings){
+        if (typeof settings.__partsIndex != 'undefined') {
+            if (request.status == 200) {
+                $("<style>").attr("id", "external-style").text(css).appendTo("head");
+                hlpl();
+                bindBtnEvent();
+                console.log(settings.__partsIndex);
+            }
+        }
+    });
+
+    $(document).ready(function(){
+        $("<style>").attr("id", "external-style").text(css).appendTo("head");
+        hlpl();
+        bindBtnEvent();
 
         $('div').on("click", ".not-allowed", function(event){
             event.preventDefault();
         });
-
-        function distance( x1, y1, x2, y2 ) {
-            var dx = x1-x2;
-            var dy = y1-y2;
-            return Math.sqrt( dx*dx + dy*dy );
-        }
     });
 })();
