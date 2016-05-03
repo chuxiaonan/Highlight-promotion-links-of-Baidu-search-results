@@ -104,7 +104,6 @@
                 $("<style>").attr("id", "external-style").text(css).appendTo("head");
                 hlpl();
                 bindBtnEvent();
-                console.log(settings.__partsIndex);
             }
         }
     });
