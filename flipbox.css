@@ -1,0 +1,138 @@
+/*
+ * styles from https://github.com/hakimel/css/tree/master/flipside
+ *
+ */
+.flipbox {
+    display: block;
+    position: relative;
+    border: double 8px red;
+    min-height: 100px;
+    -webkit-transition: width 0.8s cubic-bezier(0.23, 1, 0.32, 1), height 0.8s cubic-bezier(0.23, 1, 0.32, 1), -webkit-transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: width 0.8s cubic-bezier(0.23, 1, 0.32, 1), height 0.8s cubic-bezier(0.23, 1, 0.32, 1), transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+    -webkit-transform-origin: 50% 50%;
+        -ms-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+}
+
+.flipbox-front {
+    z-index: 999;
+    position: absolute;
+    display: block;
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-transition: background 0.15s ease, line-height 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+            transition: background 0.15s ease, line-height 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.flipbox-front:hover {
+    background-color: #f77066;
+}
+
+.not-allowed .flipbox-front {
+    cursor: pointer;
+}
+
+.flipbox-back {
+    z-index: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #eee;
+    color: #222;
+    -webkit-transform: translateZ(-2px) rotateX(180deg);
+            transform: translateZ(-2px) rotateX(180deg);
+    overflow: hidden;
+    -webkit-transition: box-shadow 0.8s ease;
+            transition: box-shadow 0.8s ease;
+    text-align: center;
+}
+
+.flipbox-back p {
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.flipbox-back button {
+    padding: 12px 20px;
+    width: 30%;
+    margin: 0 5px;
+    background-color: transparent;
+    border: 0;
+    border-radius: 2px;
+    font-size: 1em;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-transition: background 0.15s ease;
+            transition: background 0.15s ease;
+}
+
+.flipbox-back button:focus {
+    outline: 0;
+}
+
+.flipbox-back button.yes {
+    background-color:  #2196F3;
+    color: #fff;
+}
+
+.flipbox-back button.yes:hover {
+    background-color: red;
+}
+
+.flipbox-back button.no {
+    color: #2196F3;
+}
+
+.flipbox-back button.no:hover {
+    background-color: #ddd;
+}
+
+.flipbox[data-direction="left"] .flipbox-back,
+.flipbox[data-direction="right"] .flipbox-back {
+    -webkit-transform: translateZ(-2px) rotateY(180deg);
+            transform: translateZ(-2px) rotateY(180deg);
+}
+
+.flipbox.is-open {
+    border: solid 8px #eee; 
+}
+
+.flipbox.is-open .flipbox-front {
+    pointer-events: none;
+    z-index: 0;
+}
+
+.flipbox.is-open .flipbox-back {
+    z-index: 999;
+}
+
+.flipbox[data-direction="top"].is-open {
+    -webkit-transform: rotateX(180deg);
+            transform: rotateX(180deg);
+    box-shadow: 0 -6px 8px rgba(0, 0, 0, 0.4);
+}
+
+.flipbox[data-direction="right"].is-open {
+    -webkit-transform: rotateY(180deg);
+            transform: rotateY(180deg);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+}
+
+.flipbox[data-direction="bottom"].is-open {
+    -webkit-transform: rotateX(-180deg);
+            transform: rotateX(-180deg);
+    box-shadow: 0 -6px 8px rgba(0, 0, 0, 0.4);
+}
+
+.flipbox[data-direction="left"].is-open {
+    -webkit-transform: rotateY(-180deg);
+            transform: rotateY(-180deg); 
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+}
